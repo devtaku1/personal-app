@@ -6,8 +6,6 @@ const nextConfig = {
     domains: [
       'tailwindui.com',
       'images.unsplash.com',
-      'eincode.com',
-      'thrangra.sirv.com',
       'picsum.photos'
     ],
   },
