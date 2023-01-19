@@ -7,44 +7,8 @@ import Image from 'next/legacy/image';
 import Footer from '../components/common/footer';
 import Header from '../components/common/header';
 import Navbar from '../components/common/navbar';
-
-const blogs = [
-  {
-    slug: 'creating-a-game-engine-from-scratch',
-    title: 'Creating a Game Engine From Scratch',
-    description:
-      'In hac habitasse platea dictumst. Vestibulum vitae porta lacus, lobortis semper ante.',
-    date: '2023-01-18',
-    coverImage: 'https://picsum.photos/id/96/1920/1080',
-  },
-  {
-    slug: 'what-working-remotely-is-like',
-    title: 'What Working Remotely is Like',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas congue ultrices.',
-    date: '2022-01-12',
-    coverImage: 'https://picsum.photos/id/200/1920/1080',
-  },
-  {
-    slug: 'learning-nextjs-as-a-backend-dev',
-    title: 'Learning Next JS as a Backend .NET Developer',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas congue ultrices.',
-    date: '2022-01-01',
-    coverImage: 'https://picsum.photos/id/120/1920/1080',
-  },
-];
-
-const portfolios = [
-  {
-    slug: 'software-engineer-siemens',
-    title: 'Software Engineer Siemens',
-    description: 'Working as C++ and C# software engineer',
-    employmentDate: '2022-01-12',
-    coverImage:
-      'https://images.unsplash.com/photo-1622473590773-f588134b6ce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1370&q=50',
-  },
-];
+import { BlogList } from '../components/blogs';
+import { PortfolioList } from '../components/portfolios';
 
 const Home: NextPage = () => {
   return (
@@ -79,82 +43,15 @@ const Home: NextPage = () => {
               <a className='ml-1 text-sm text-indigo-600'>(See All)</a>
             </Link>
           </h2>
-
-          {/* Blog List Starts */}
-          <div className='grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
-            {blogs.map((blog) => (
-              <div key={blog.slug} className='group'>
-                <div className='w-full bg-gray-200 rounded-md h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:aspect-none lg:h-40'>
-                  <Link legacyBehavior href={`/blogs/${blog.slug}`}>
-                    <a>
-                      <div className='relative w-full bg-gray-200 rounded-md h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:aspect-none lg:h-40'>
-                        <Image
-                          priority
-                          layout='fill'
-                          objectFit='cover'
-                          src={blog.coverImage}
-                          className='rounded-lg hover:cursor-pointer'
-                          alt={''}
-                        />
-                      </div>
-                    </a>
-                  </Link>
-                </div>
-                <div className='flex justify-between mt-4'>
-                  <div>
-                    <h3 className='text-sm font-bold text-gray-700'>
-                      <span aria-hidden='true' className='inset-0' />
-                      {blog.title}
-                    </h3>
-                    <p className='mt-1 text-sm text-gray-500'>
-                      {blog.description}
-                    </p>
-                  </div>
-                </div>
-                <Link legacyBehavior href={`/blogs/${blog.slug}`}>
-                  <a className='text-sm font-bold text-gray-700'>Read More</a>
-                </Link>
-              </div>
-            ))}
-          </div>
-          {/* Blog List Ends */}
-
+          <BlogList />
           <br></br>
-
           <h2 className='text-2xl font-bold tracking-tight text-gray-900'>
             Portfolios
             <Link legacyBehavior href='/portfolios'>
               <a className='ml-1 text-sm text-indigo-600'>(See All)</a>
             </Link>
           </h2>
-
-          {/* Portfolio List Starts */}
-          <div className='grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
-            {portfolios.map((portfolio) => (
-              <div key={portfolio.slug} className='relative group'>
-                <div className='relative w-full overflow-hidden bg-white rounded-lg h-80 group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1'>
-                  <Image
-                    layout='fill'
-                    src={portfolio.coverImage}
-                    alt={''}
-                    className='object-cover object-center w-full h-full'
-                  />
-                </div>
-                <h3 className='mt-6 text-sm text-gray-500'>
-                  <Link legacyBehavior href={`/portfolios/${portfolio.slug}`}>
-                    <a>
-                      <span className='absolute inset-0' />
-                      {portfolio.title}
-                    </a>
-                  </Link>
-                </h3>
-                <p className='text-base font-semibold text-gray-900'>
-                  {portfolio.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          {/* Portfolio List Ends */}
+          <PortfolioList />
         </div>
       </div>
       <Footer />
