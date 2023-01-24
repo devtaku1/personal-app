@@ -7,4 +7,9 @@ const getFileNames = (dir: string): string[] => {
   return fs.readdirSync(dir);
 };
 
-export { getFileNames, getDir };
+const getItemInPath = (filePath: string) => {
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  return fileContent;
+};
+
+export { getFileNames, getDir, getItemInPath };
