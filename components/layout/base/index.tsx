@@ -1,13 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/legacy/image';
-import Link from 'next/link';
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 
-import { BlogList } from '../../blogs';
 import { Navbar, Header, Footer } from '../../common';
-import { PortfolioList } from '../../portfolios';
 
-const BaseLayout = ({ children }: any) => {
+const BaseLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div className='px-4 mx-auto space-y-8 max-w-7xl sm:px-6 lg:px-8'>
