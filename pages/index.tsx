@@ -5,8 +5,7 @@ import Link from 'next/link';
 import { BlogList } from '../components/blogs';
 import { PortfolioList } from '../components/portfolios';
 import { BaseLayout } from '../components/layout';
-import { getBlog, getBlogFileNames, getBlogs } from '../lib/md';
-import { join } from 'path';
+import { getBlogs } from '../lib/blogs';
 
 const Home: NextPage = () => {
   return (
