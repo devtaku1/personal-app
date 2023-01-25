@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/legacy/image';
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 
-import { Navbar, Header, Footer } from '../../common';
+import { Navbar, Header, Footer } from '@components/common';
 
 const BaseLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
