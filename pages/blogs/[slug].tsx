@@ -1,7 +1,8 @@
-import { NextPage } from 'next/types';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next/types';
 import { PageLayout } from '@components/layout';
 import { getBlogBySlug, getBlogsSlugs } from '@lib/blogs';
 import { Blog } from '@interfaces/Blog';
+import { ParsedUrlQuery } from 'querystring';
 
 type Props = {
   blog: Blog;
@@ -66,14 +67,18 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
   );
 };
 
-export const getStaticProps = (context: any) => {
-  const { slug } = context.params;
+interface Params extends ParsedUrlQuery {
+  slug: string;
+}
+
+export const getStaticProps: GetStaticProps<Props, Params> = (context) => {
+  const { slug } = context.params!;
   const blog = getBlogBySlug(slug);
 
   return { props: { blog } };
 };
 
-export const getStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const slugs = getBlogsSlugs();
   const paths = slugs.map((slug) => ({ params: { slug } }));
 
