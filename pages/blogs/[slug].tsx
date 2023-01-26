@@ -3,6 +3,7 @@ import { PageLayout } from '@components/layout';
 import { getBlogBySlug, getBlogsSlugs } from '@lib/blogs';
 import { Blog } from '@interfaces/Blog';
 import { ParsedUrlQuery } from 'querystring';
+import Image from 'next/legacy/image';
 
 type Props = {
   blog: Blog;
@@ -11,7 +12,7 @@ type Props = {
 const BlogDetail: NextPage<Props> = ({ blog }) => {
   return (
     <>
-      <PageLayout>
+      <PageLayout pageTitle={blog.title}>
         <div className='w-2/3 m-auto'>
           {/* Blog Header Starts */}
           <div className='blog-detail-header'>
@@ -21,13 +22,14 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
                   <a href='#'>
                     <span className='sr-only'>Author Name</span>
                     <div className='relative h-10 w-10 !mb-0'>
-                      {/* <Image 
+                      <Image
                         priority
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-full"
-                        src={authorImage} alt="" 
-                      /> */}
+                        layout='fill'
+                        objectFit='cover'
+                        className='rounded-full'
+                        src={blog.authorImage}
+                        alt=''
+                      />
                     </div>
                   </a>
                 </div>
@@ -49,11 +51,13 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
               {blog.description}
             </h2>
             <div className='relative w-full mx-auto bg-black h-96'>
-              {/* <Image
+              <Image
                 priority
-                layout="fill"
-                objectFit="cover"
-                src={coverImage} alt=""/> */}
+                layout='fill'
+                objectFit='cover'
+                src={blog.coverImage}
+                alt=''
+              />
             </div>
           </div>
           {/* Blog Header Ends */}

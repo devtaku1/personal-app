@@ -2,7 +2,7 @@
 title: Learning Next JS as a Backend .NET Developer
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas congue ultrices.
 author: Joshua Torres
-authorImage: https://picsum.photos/id/120/1920/1080
+authorImage: https://picsum.photos/id/237/1920/1080
 coverImage: https://picsum.photos/id/120/1920/1080
 date: '2023-01-01'
 ---

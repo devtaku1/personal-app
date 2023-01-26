@@ -2,7 +2,7 @@
 title: Creating a Game Engine From Scratch
 description: In hac habitasse platea dictumst. Vestibulum vitae porta lacus, lobortis semper ante.
 author: Joshua Torres
-authorImage: https://picsum.photos/id/96/1920/1080
+authorImage: https://picsum.photos/id/237/1920/1080
 coverImage: https://picsum.photos/id/96/1920/1080
 date: '2023-01-18'
 ---

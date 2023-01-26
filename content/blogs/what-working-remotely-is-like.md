@@ -2,7 +2,7 @@
 title: What Working Remotely is Like
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam egestas congue ultrices.
 author: Joshua Torres
-authorImage: https://picsum.photos/id/200/1920/1080
+authorImage: https://picsum.photos/id/237/1920/1080
 coverImage: https://picsum.photos/id/200/1920/1080
 date: '2022-01-12'
 ---
