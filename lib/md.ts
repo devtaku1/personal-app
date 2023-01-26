@@ -1,6 +1,10 @@
 import fs from 'fs';
 import matter from 'gray-matter';
+import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
 import { join } from 'path';
+import { remark } from 'remark';
+
 import { MarkdownItem } from '@interfaces/Markdown';
 
 const getDir = (path: string) => join(process.cwd(), path);
@@ -23,4 +27,19 @@ const getAllItems = (
   return items;
 };
 
-export { getDir, getFileNames, getItemInPath, getAllItems };
+const markdownToHtml = async (markdown: string) => {
+  const result = await remark()
+    .use(html)
+    .use(remarkGfm)
+    .process(markdown);
+
+  return result.toString();
+};
+
+export {
+  getDir,
+  getFileNames,
+  getItemInPath,
+  getAllItems,
+  markdownToHtml,
+};

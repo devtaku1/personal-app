@@ -1,6 +1,14 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next/types';
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from 'next/types';
 import { PageLayout } from '@components/layout';
-import { getBlogBySlug, getBlogsSlugs } from '@lib/blogs';
+import {
+  getBlogBySlug,
+  getBlogBySlugWithMarkdown,
+  getBlogsSlugs,
+} from '@lib/blogs';
 import { Blog } from '@interfaces/Blog';
 import { ParsedUrlQuery } from 'querystring';
 import Image from 'next/legacy/image';
@@ -20,7 +28,9 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
               <div className='flex items-center'>
                 <div className='flex-shrink-0'>
                   <a href='#'>
-                    <span className='sr-only'>Author Name</span>
+                    <span className='sr-only'>
+                      Author Name
+                    </span>
                     <div className='relative h-10 w-10 !mb-0'>
                       <Image
                         priority
@@ -40,13 +50,19 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
                     </a>
                   </p>
                   <div className='flex space-x-1 text-sm text-gray-500'>
-                    <time dateTime='{date}'>{blog.date}</time>
+                    <time dateTime='{date}'>
+                      {blog.date}
+                    </time>
                   </div>
                 </div>
               </div>
-              <div className='flex self-end'>{/* Social Links Here */}</div>
+              <div className='flex self-end'>
+                {/* Social Links Here */}
+              </div>
             </div>
-            <h1 className='mb-1 text-4xl font-bold'>{blog.title}</h1>
+            <h1 className='mb-1 text-4xl font-bold'>
+              {blog.title}
+            </h1>
             <h2 className='mb-2 text-xl text-gray-600 blog-detail-header-subtitle'>
               {blog.description}
             </h2>
@@ -63,7 +79,11 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
           {/* Blog Header Ends */}
           <article className='prose lg:prose-lg markdown-image-50'>
             {/* Blog Content Here */}
-            {blog.content}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: blog.content,
+              }}
+            ></div>
           </article>
         </div>
       </PageLayout>
@@ -75,9 +95,12 @@ interface Params extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getStaticProps: GetStaticProps<Props, Params> = (context) => {
+export const getStaticProps: GetStaticProps<
+  Props,
+  Params
+> = async (context) => {
   const { slug } = context.params!;
-  const blog = getBlogBySlug(slug);
+  const blog = await getBlogBySlugWithMarkdown(slug);
 
   return { props: { blog } };
 };
