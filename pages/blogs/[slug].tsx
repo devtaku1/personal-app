@@ -21,9 +21,7 @@ const BlogDetail: NextPage<Props> = ({ blog }) => {
     <>
       <PageLayout pageTitle={blog.title}>
         <div className='w-2/3 m-auto'>
-          {/* Blog Header Starts */}
           <BlogHeader blog={blog} />
-          {/* Blog Header Ends */}
           <article className='prose lg:prose-lg markdown-image-50'>
             {/* Blog Content Here */}
             <div
