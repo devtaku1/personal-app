@@ -5,7 +5,11 @@ import remarkGfm from 'remark-gfm';
 import { join } from 'path';
 import { remark } from 'remark';
 
-import { MarkdownItem } from '@interfaces/Markdown';
+import {
+  MarkdownItem,
+  SearchContent,
+} from '@interfaces/Markdown';
+import { Blog } from '@interfaces/Blog';
 
 const getDir = (path: string) => join(process.cwd(), path);
 
@@ -36,10 +40,32 @@ const markdownToHtml = async (markdown: string) => {
   return result.toString();
 };
 
+const saveSearchData = (blogs: Blog[]) => {
+  const searchFile = getDir('/content/search/index.json');
+  const searchItemList: SearchContent[] = [];
+
+  blogs.forEach((blog) => {
+    const searchItem: SearchContent = {
+      slug: blog.slug,
+      title: blog.title,
+      description: blog.description,
+      category: 'blogs',
+    };
+
+    searchItemList.push(searchItem);
+  });
+
+  fs.writeFileSync(
+    searchFile,
+    JSON.stringify(searchItemList)
+  );
+};
+
 export {
   getDir,
   getFileNames,
   getItemInPath,
   getAllItems,
   markdownToHtml,
+  saveSearchData,
 };
