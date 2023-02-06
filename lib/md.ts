@@ -6,6 +6,8 @@ import { join } from 'path';
 import { remark } from 'remark';
 
 import {
+  ContentItemName,
+  MarkdownContent,
   MarkdownItem,
   SearchContent,
 } from '@interfaces/Markdown';
@@ -40,19 +42,23 @@ const markdownToHtml = async (markdown: string) => {
   return result.toString();
 };
 
-const saveSearchData = (blogs: Blog[]) => {
+const saveSearchData = (content: MarkdownContent) => {
   const searchFile = getDir('/content/search/index.json');
   const searchItemList: SearchContent[] = [];
 
-  blogs.forEach((blog) => {
-    const searchItem: SearchContent = {
-      slug: blog.slug,
-      title: blog.title,
-      description: blog.description,
-      category: 'blogs',
-    };
+  Object.keys(content).forEach((dataSource) => {
+    const contentName = dataSource as ContentItemName;
 
-    searchItemList.push(searchItem);
+    content[contentName].forEach((data) => {
+      const searchItem: SearchContent = {
+        slug: data.slug,
+        title: data.title,
+        description: data.description,
+        category: contentName,
+      };
+
+      searchItemList.push(searchItem);
+    });
   });
 
   fs.writeFileSync(
