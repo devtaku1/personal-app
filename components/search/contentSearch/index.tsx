@@ -1,24 +1,16 @@
-import { useEffect } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 import ContentIndexer from '@lib/client/ContentIndexer';
+import { ChangeEvent } from 'react';
 
 const ContentSearch = () => {
-  const buildIndex = () => {
-    const results = ContentIndexer.search('mark');
-    const results2 = ContentIndexer.search('asdf');
-    const results3 = ContentIndexer.search('game');
-    const results4 = ContentIndexer.search('sie');
-
+  const performSearch = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value } = event.target;
+    const results = ContentIndexer.search(value);
     console.log(results);
-    console.log(results2);
-    console.log(results3);
-    console.log(results4);
   };
-
-  useEffect(() => {
-    buildIndex();
-  }, []);
 
   return (
     <>
@@ -34,6 +26,7 @@ const ContentSearch = () => {
         </div>
         <input
           id='search-input'
+          onChange={performSearch}
           autoComplete='off'
           type='text'
           className='block w-full py-2 pl-10 pr-3 leading-5 placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
