@@ -19,14 +19,6 @@ type Props = {
 const Home: NextPage<Props> = ({ blogs, portfolios }) => {
   return (
     <BaseLayout>
-      <h2 className='text-2xl font-bold tracking-tight text-gray-900'>
-        Newest Blogs
-        <Link legacyBehavior href='/blogs'>
-          <a className='ml-1 text-sm text-indigo-600'>
-            (See All)
-          </a>
-        </Link>
-      </h2>
       <BlogList blogs={blogs} />
       <br></br>
       <h2 className='text-2xl font-bold tracking-tight text-gray-900'>

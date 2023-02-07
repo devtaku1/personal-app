@@ -14,7 +14,7 @@ const PageLayout: FunctionComponent<
 > = ({ children, pageTitle }) => {
   return (
     <>
-      <div className='px-4 mx-auto space-y-8 page-layout max-w-7xl sm:px-6 lg:px-8'>
+      <div className='px-4 pb-8 mx-auto space-y-8 page-layout max-w-7xl sm:px-6 lg:px-8'>
         <Head>
           <title>{pageTitle}</title>
           <meta
