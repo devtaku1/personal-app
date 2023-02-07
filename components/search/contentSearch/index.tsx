@@ -8,9 +8,11 @@ import {
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import ContentIndexer from '@lib/client/ContentIndexer';
 import { SearchContent } from '@interfaces/Markdown';
+import { useRouter } from 'next/router';
 
 const ContentSearch = () => {
   const ref = useRef<HTMLInputElement>(null);
+  const router = useRouter();
   const [results, setResults] = useState<SearchContent[]>(
     []
   );
@@ -91,7 +93,11 @@ const ContentSearch = () => {
           {results.map((result) => (
             <li
               key={result.slug}
-              onClick={() => {}}
+              onClick={() =>
+                router.push(
+                  `${result.category}/${result.slug}`
+                )
+              }
               className={`hover:bg-indigo-600 hover:text-white p-3 relative cursor-pointer`}
             >
               <div className='text-sm font-bold truncate'>
